@@ -5,7 +5,8 @@ class Celebrity(models.Model):
     last_name = models.CharField(max_length = 15)
     age = models.IntegerField(default=0)
     typeof = models.CharField(max_length = 20)
-
+    #celebrities = models.ManyToManyField(Celebrity)
+    
     class Meta:
         verbose_name = ("Celebrity")
         verbose_name_plural = ("Celebrities")
@@ -14,7 +15,7 @@ class Celebrity(models.Model):
         return self.first_name + " " + self.last_name
 
 class Movie(models.Model):
-    celebrity = models.ForeignKey(Celebrity, on_delete = models.CASCADE, null = True)
+    celebrities = models.ManyToManyField(Celebrity)
     title = models.CharField(max_length = 100)
     description = models.TextField(null = True)
     genre = models.CharField(max_length = 50, null = True)
